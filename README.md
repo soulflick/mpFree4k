@@ -15,6 +15,8 @@ Written in .Net / WPF using Microsoft Windows Media Player Library (wmplib).
 
 Usage of SQLIte to store your favourites.
 
+Reading of mp3 tags with "taglib.sharp" library.
+
 -----
 
 Feel free to contribute and contact me.
