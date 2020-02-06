@@ -168,10 +168,16 @@ namespace MpFree4k.Controls
 
             ListViewItem lvi = null;
             int pos = vm.Tracks.Count;
+            PlaylistItem dragpositem = null;
 
             lvi = (ListViewItem)PlaylistView.ItemContainerGenerator.ContainerFromItem(element.DataContext);
             if (lvi != null)
+            {
                 pos = (lvi.DataContext as PlaylistItem).Position - 1;
+                if (pos > 0)
+                    pos--;
+                dragpositem = vm.Tracks[pos];
+            }
 
             if (e.Data.GetDataPresent("MediaLibraryItemData"))
             {
@@ -205,8 +211,17 @@ namespace MpFree4k.Controls
                     return;
                 }
 
-                vm.Move(infoItms, pos);
-                vm.UpdatePlayPosition();
+                if (dragpositem == null)
+                {
+                    vm.Move(infoItms, pos);
+                    vm.UpdatePlayPosition();
+                }
+                else
+                {
+                    vm.Move(infoItms, dragpositem);
+                }
+
+
                 dragItems.Clear();
                 //dragItems.AddRange(infoItms);
 
